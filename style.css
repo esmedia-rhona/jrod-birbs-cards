@@ -388,6 +388,10 @@ main {
   animation: fadeIn 0.2s ease;
 }
 
+.overlay[hidden] {
+  display: none;
+}
+
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .viewer {

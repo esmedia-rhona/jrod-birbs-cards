@@ -105,6 +105,10 @@ a { color: inherit; }
 .amp {
   font-style: italic;
   opacity: 0.85;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--holo-1);
 }
 
 @keyframes brandShift {
@@ -224,6 +228,10 @@ a { color: inherit; }
   border-color: var(--holo-1);
   color: var(--text);
   box-shadow: 0 0 0 1px rgba(94, 242, 224, 0.25), 0 0 14px rgba(94, 242, 224, 0.12);
+}
+
+.chip-all {
+  font-weight: 600;
 }
 
 /* ===================== GRID ===================== */

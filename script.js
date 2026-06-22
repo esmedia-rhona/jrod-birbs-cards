@@ -93,21 +93,38 @@ function escapeHtml(str) {
 }
 
 // ---------- Chip handling ----------
+const allChips = [...document.querySelectorAll('.chip[data-value]')];
+const clearBtn = document.getElementById('clearFilters');
+
+function setActiveStates() {
+  allChips.forEach(c => c.classList.toggle('active', c.dataset.value === state[c.closest('.chip-row').dataset.group]));
+  const noFilters = state.archetype === 'all' && state.category === 'all';
+  clearBtn.classList.toggle('active', noFilters);
+}
+
 function setupChips(containerId) {
   const container = document.getElementById(containerId);
   const group = container.dataset.group;
   container.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
-      container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      state[group] = chip.dataset.value;
+      // toggle off if clicking the already-active chip
+      state[group] = (state[group] === chip.dataset.value) ? 'all' : chip.dataset.value;
+      setActiveStates();
       applyFilters();
     });
   });
 }
 
+clearBtn.addEventListener('click', () => {
+  state.archetype = 'all';
+  state.category = 'all';
+  setActiveStates();
+  applyFilters();
+});
+
 setupChips('archChips');
 setupChips('catChips');
+setActiveStates();
 
 document.getElementById('searchInput').addEventListener('input', (e) => {
   state.query = e.target.value;

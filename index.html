@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J-Rod &amp; Birbs — Custom Card Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1 class="brand-title">J-Rod <span class="amp">&amp;</span> Birbs</h1>
+      <p class="brand-sub">A custom 60-card collection</p>
+    </div>
+    <div class="stat-strip" id="statStrip">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search by name or effect…" autocomplete="off">
+    </div>
+    <div class="chip-row" id="archChips" data-group="archetype">
+      <button class="chip active" data-value="all">All Sets</button>
+      <button class="chip" data-value="J-Rod">J-Rod</button>
+      <button class="chip" data-value="Birbs">Birbs</button>
+      <button class="chip" data-value="J-Rod / Birbs">Crossover</button>
+    </div>
+    <div class="chip-row" id="catChips" data-group="category">
+      <button class="chip active" data-value="all">All Types</button>
+      <button class="chip" data-value="Monster">Monster</button>
+      <button class="chip" data-value="Spell">Spell</button>
+      <button class="chip" data-value="Trap">Trap</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="cardGrid"></div>
+  <p class="empty-state" id="emptyState" hidden>No cards match that search. Try a different name or filter.</p>
+</main>
+
+<footer class="site-footer">
+  <p>60 cards · designed and customized with care</p>
+</footer>
+
+<!-- Detail viewer -->
+<div class="overlay" id="overlay" hidden>
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true">
+    <button class="viewer-close" id="closeViewer" aria-label="Close">&times;</button>
+    <button class="viewer-nav prev" id="prevCard" aria-label="Previous card">&#8249;</button>
+    <button class="viewer-nav next" id="nextCard" aria-label="Next card">&#8250;</button>
+
+    <div class="viewer-content">
+      <div class="viewer-art">
+        <div class="foil-card" id="foilCard">
+          <img id="viewerImg" src="" alt="">
+          <div class="foil-sheen"></div>
+        </div>
+      </div>
+
+      <div class="viewer-info">
+        <div class="viewer-eyebrow">
+          <span id="viewerSetId"></span>
+          <span class="rarity-pill" id="viewerRarity"></span>
+        </div>
+        <h2 id="viewerName"></h2>
+        <p class="viewer-archetype" id="viewerArchetype"></p>
+
+        <div class="stat-line" id="viewerStatLine"></div>
+
+        <div class="effect-box">
+          <span class="effect-label" id="effectLabel">Effect</span>
+          <p id="viewerEffect"></p>
+        </div>
+
+        <div class="role-note" id="viewerRoleWrap">
+          <span class="role-label">Deck role</span>
+          <p id="viewerRole"></p>
+        </div>
+
+        <p class="serial" id="viewerSerial"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="cards.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
